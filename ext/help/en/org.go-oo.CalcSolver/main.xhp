@@ -1,0 +1,178 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<helpdocument version="1.0">
+    <meta>
+        <filename>/org.go-oo.CalcSolver/main.xhp</filename>   
+    </meta>
+    <body>
+        <bookmark xml-lang="en-US" branch="index" id="bm_scsolver01">
+            <bookmark_value>Optimization Solver for Calc</bookmark_value>
+        </bookmark>
+        <bookmark xml-lang="en-US" branch="hid/org.go-oo.CalcSolver:Main" id="bm_scsolver01"/>
+        <section>
+            <paragraph role="heading" level="1">
+                <ahelp hid="org.go-oo.CalcSolver:Main">Optimization Solver for Calc</ahelp>
+            </paragraph>
+            <paragraph role="heading" level="2">
+                Overview
+            </paragraph>
+            <paragraph role="paragraph">
+                Optimization Solver for Calc (Solver) enables you to optimize 
+                a numerical formula expression while satisfying a set of
+                arbitrary constraints if any.  Three optimization goals are
+                available: maximize, minimize, or solve to a specific value.
+            </paragraph>
+            <paragraph role="warning">
+                Currently, however, Solver only supports linear programming
+                models to a fullest extent.  <emph>For non-linear programming 
+                models, only maximization and minimization are 
+                supported.</emph> Constraints, including the integer and 
+                positive number constraints, are not supported in solving 
+                non-linear programming models.
+            </paragraph>
+            <paragraph role="heading" level="2">
+                Target Cell
+            </paragraph>
+            <paragraph role="paragraph">
+                Target cell is the cell whose value you want to optimize 
+                based on your selected criteria.  This cell should
+                have a formula expression that generates a numerical result,
+                and has one or more references to other cells that contains
+                numerical values.
+            </paragraph>
+            <paragraph role="heading" level="2">
+                Goal
+            </paragraph>
+            <paragraph role="paragraph">
+                Goal is the optimization criteria.  You can either maximize
+                or minimize your target cell value, or solve it to a certain 
+                value specified in the <emph>Value Of</emph> input box.
+            </paragraph>
+            <paragraph role="warning">
+                The option to solve to a specific value is currently 
+                supported only when solving linear programming models.
+            </paragraph>
+            <paragraph role="heading" level="2">
+                By changing cells
+            </paragraph>
+            <paragraph role="paragraph">
+                The input field labeled <emph>By changing cells</emph> is 
+                where you define a cell or a cell range whose values will 
+                change during the optimization run (referred to as the 
+                <emph>variable cells</emph>).  The target cell should reference these 
+                variable cells either directly or indirectly such that 
+                changing the value of one of them would change the value of
+                the target cell.
+            </paragraph>
+            <paragraph role="heading" level="2">Constraints</paragraph>
+            <paragraph role="paragraph">Constraints are rules you want to 
+                 enforce while seeking for an optimized target value. A 
+                 constraint consists of a left-hand-side (LHS) term, a 
+                 right-hand-side (RHS) term, and the relationship between 
+                 them. The LHS term is the address of a cell that contains a 
+                 formula expression.  This formula expression must reference 
+                 one or more of the variable cells in the range specified in 
+                 the <emph>By changing cells</emph> field.  The RHS term can 
+                 be the address of a cell that contains a formula expression 
+                 with reference to the variable cell(s), or simply a cell
+                 that contains a constant value.  The relationship between 
+                 the LHS and RHS can be one of either &gt;=, =, or &lt;=.
+                 </paragraph>
+            <paragraph role="paragraph">You can define multiple constraints 
+                 in a single model. The dialog has a list box that shows 
+                 currently defined set of constraints.</paragraph>
+            <paragraph role="heading" level="3">Add</paragraph>
+            <paragraph role="paragraph">The <emph>Add</emph> 
+                button launches a constraint input dialog to let you enter a 
+                new constraint rule.</paragraph>
+            <paragraph role="heading" level="3">Change</paragraph>
+            <paragraph role="paragraph">The <emph>Change</emph> 
+                button launches a constraint input dialog to let you modify 
+                an existing constraint rule.  You need to highlight the
+                constraint rule in the list box to specify which rule you
+                wish to modify.</paragraph>
+            <paragraph role="heading" level="3">Delete</paragraph>
+            <paragraph role="paragraph">The <emph>Delete</emph> 
+                button removes the highlighted constraint rule from the 
+                current set of constraints.</paragraph>
+            <paragraph role="heading" level="3">
+                Constraint input dialog
+            </paragraph>
+            <paragraph role="paragraph">
+                The Constraint Input Dialog is launched when adding a new
+                constraint rule, or modifying an existing one. It consists of
+                the <emph>Cell Reference</emph> input field on the left side,
+                <emph>Constraint</emph> input field on the right side, and
+                the equality type combo box between the two fields.
+            </paragraph>
+            <paragraph role="tip">
+                The Cell Reference and Constraint input fields can each take 
+                a cell range, to define multiple constraint rules of the same 
+                equality type.  When doing this, however, the shape of the 
+                cell ranges in the two input fields must match in order for 
+                that rule to be valid.  You will get an error message if the
+                ranges have different shapes.  If the Constraint input field 
+                has a numerical value instead of a cell range, that value 
+                will be used as the right-hand-side constraint value for all 
+                specified constraint rules.
+            </paragraph>
+            <paragraph role="heading" level="2">
+                Reset
+            </paragraph>
+            <paragraph role="paragraph">
+                Pressing the <emph>Reset</emph> button empties all the input 
+                fields and constraint list.  So, use it with caution!
+            </paragraph>
+            <paragraph role="heading" level="2">
+                Saving and Loading a model
+            </paragraph>
+            <paragraph role="paragraph">
+                You can save your current model with the document by pressing 
+                <emph>Save</emph>, and loading the model saved with the
+                document by pressing <emph>Load</emph>.  Note, however, that
+                pressing the <emph>Save</emph> button simply writes the model 
+                to the document on memory, so you will still have to save the 
+                parent document in order to store it with the file 
+                permanently.
+            </paragraph>
+            <paragraph role="heading" level="2">
+                Option
+            </paragraph>
+            <paragraph role="paragraph">
+                Pressing the <emph>Option</emph> launches the Options dialog 
+                to configure run-time options of the optimizers.
+            </paragraph>
+            <paragraph role="heading" level="3">
+                Assume linear model
+            </paragraph>
+            <paragraph role="paragraph">
+                Setting this option forces Solver to use the linear 
+                programming algorithm to solve the model.  This is on by 
+                default.
+            </paragraph>
+            <paragraph role="heading" level="3">
+                Allow only positive values
+            </paragraph>
+            <paragraph role="paragraph" level="3">
+                Setting this option forces the variables to be always 
+                positive in the optimized solution.  Currently this option 
+                only works with the linear programming models.
+            </paragraph>
+            <paragraph role="heading" level="3">
+                Allow only integer values
+            </paragraph>
+            <paragraph role="paragraph">
+                Setting this option forces the variables to be always 
+                integers in the optimized solution.  Currently this option 
+                only works with the linear programming models.
+            </paragraph>
+            <paragraph role="warning">
+                This options dialog will likely be replaced with an 
+                algorithm-specific options dialog in the future.  The 
+                algorithm-specific options dialog will provide option 
+                settings that are specific to each optimizer algorithm, thus 
+                will give a greater flexibility for each algorithm's run-time 
+                behavior than the current unified options dialog.
+            </paragraph>
+        </section>
+    </body>
+</helpdocument>

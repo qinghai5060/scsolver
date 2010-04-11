@@ -1,0 +1,876 @@
+2009-04-21  Kohei Yoshida  <kohei.yoshida@gmail.com>
+
+Modified the optimizer skeleton code to get it to compile again.	
+	
+	* workben/optimizer/nlp_skel/main.cxx:
+	* workben/optimizer/nlp_skel/Makefile:
+	* workben/optimizer/nlp_skel/myfunctor.cxx:
+	* workben/optimizer/nlp_skel/myfunctor.hxx:
+
+2009-02-03  Kohei Yoshida  <kohei.yoshida@gmail.com>
+
+	* source/numeric/funcobj.cxx: replaced non-ASCII characters with ASCII
+	ones.
+
+2009-02-03  Federico Zenith  <zenith.federico@googlemail.com>
+
+	* source/inc/numeric/cellfuncobj.hxx:
+	* source/inc/numeric/exception.hxx:
+	* source/inc/numeric/funcobj.hxx:
+	* source/numeric/cellfuncobj.cxx:
+	* source/numeric/exception.cxx:
+	* source/numeric/funcobj.cxx:
+	* source/numeric/funcobj_test.cxx: lots of code cleanups, and doxygen 
+	documentation.
+
+2009-02-01  Kohei Yoshida  <kohei.yoshida@gmail.com>
+
+	License of this software is now LGPL 3.0.
+
+2008-10-30  Kohei Yoshida  <kohei.yoshida@gmail.com>
+
+	* ext/translation/cs/scsolver.properties:
+	* ext/translation/de/scsolver.properties:
+	* ext/translation/es/scsolver.properties:
+	* ext/translation/fr/scsolver.properties:
+	* ext/translation/hu/scsolver.properties:
+	* ext/translation/ka/scsolver.properties:
+	* ext/translation/ko/scsolver.properties:
+	* ext/translation/ru/scsolver.properties:
+	* ext/translation/sv/scsolver.properties:
+	* ext/translation/tr/scsolver.properties:
+	* ext/translation/zh-CN/scsolver.properties: added localized text for 
+	'Help' (though this will not be used since the localized Help text is
+	automatically provided when setting the button type to HELP).
+	
+	* source/ui/dialog.cxx: set the button type to HELP, to get the 
+	localized Help text from OOo itself.
+
+2008-10-30  Kohei Yoshida  <kohei.yoshida@gmail.com>
+
+	* ext/translation/cs: moved from cs-CZ.  OOo's UI only uses the language
+	code.
+
+	* source/ui/resmgr.cxx: modified the locale lookup logic once more 
+	because the previous fix didn't fix the incorrect fallback issue.
+
+2008-10-30  Kohei Yoshida  <kohei.yoshida@gmail.com>
+
+	* ext/translation/ja/scsolver.properties: changed the Japanese 
+	translation for Solve shorter to make it fit in the button.
+
+	* source/ui/dialog.cxx:	made several text objects wider to prevent 
+	strings from being cut off.
+	
+	* source/inc/resmgr.hxx:
+	* source/ui/resmgr.cxx: use en_US in case a requested locale is not 
+	supported.  Also, when a requested locale string is not found, use
+	the en-US one instead of returning '(missing)'.
+
+2008-10-07  Kohei Yoshida  <kohei.yoshida@gmail.com>
+
+	* bin/pack_extension.py: use ZIP_STORED compression method when zlib is
+	not available.  I've been told that on x86_64 zlib may not be always 
+	available.
+
+2008-09-30  Kohei Yoshida  <kohei.yoshida@gmail.com>
+
+	* source/numeric/quasinewton.cxx: changed the timeout value from 5 sec
+	to 20 sec.  Eventually I need to make this configurable.
+	
+	* source/ui/option.cxx: reverted the default options to use linear 
+	optimizer.
+	
+	* util/makefile.mk: removed dependency on libtl when compiling in OOo
+	build environment.
+
+2008-09-28  Kohei Yoshida  <kohei.yoshida@gmail.com>
+
+	* workben/unittest/Makefile: fixed linkage error.
+
+2008-09-28  Kohei Yoshida  <kohei.yoshida@gmail.com>
+
+	* source/numeric/quadfitlinesearch.cxx: call it a 'solution' when a
+	quadratic peak occurs outside current range, to prevent the optimizer
+	from aborting prematurely.
+	
+	* source/numeric/quasinewton.cxx: use setDebug() for debugging the 
+	quadfit line search algorithm.
+	
+	* source/ui/basedlg.cxx: code cleanup.
+	
+	* source/ui/solvemodel.cxx: msg -> 'std exception msg' in debug printf
+	statement.
+	
+	* workben/testcase/nlp/tc1_distance.ods: updated.
+
+2008-09-28  Kohei Yoshida  <kohei.yoshida@gmail.com>
+
+	* workben/testcase/nlp/tc1_distance.ods: added a test case for 
+	non-linear optimizer.
+
+	* source/ui/solvemodel.cxx: disabled widgets for linear optimizer too.
+
+2008-09-28  Kohei Yoshida  <kohei.yoshida@gmail.com>
+
+	* source/inc/basedlg.hxx:
+	* source/inc/dialog.hxx:
+	* source/inc/unohelper.hxx:
+	* source/ui/basedlg.cxx:
+	* source/ui/baselistener.cxx:
+	* source/ui/dialog.cxx:
+	* source/ui/msgdlg.cxx:
+	* source/ui/option.cxx:
+	* source/ui/solvemodel.cxx:
+	* source/ui/unohelper.cxx: disable all widgets before optimization run,
+	and re-enable them after the run finishes.
+
+2008-09-26  Kohei Yoshida  <kohei.yoshida@gmail.com>
+
+	* source/inc/numeric/baselinesearch.hxx:
+	* source/inc/numeric/diff.hxx:
+	* source/inc/numeric/quadfitlinesearch.hxx:
+	* source/numeric/baselinesearch.cxx:
+	* source/numeric/diff.cxx:
+	* source/numeric/quadfitlinesearch.cxx:
+	* source/numeric/quasinewton.cxx: use timer to prevent infinite loop
+	during line search.  Note that sometimes the numerical differntiation
+	can loop.
+
+2008-09-25  Kohei Yoshida  <kohei.yoshida@gmail.com>
+
+	* source/ui/listener.cxx: removed unused variable.
+	
+	* source/ui/resmgr.cxx: fixed failed parsing of directory names to
+	infer locale names on Windows.  OOo 3.0's 3-layer office caused the
+	base package directory path to use '/../' in its name, which messed up
+	the algorithm to separate the folder name from its full path. 
+
+2008-09-08  Kohei Yoshida  <kohei.yoshida@gmail.com>
+
+	* util/makefile.mk: added help directory to the list of directories to
+	pack during OOo build process.
+
+2008-09-08  Kohei Yoshida  <kohei.yoshida@gmail.com>
+
+	* ext/translation/en-US/scsolver.properties:
+	* ext/translation/ja/scsolver.properties:
+	* source/inc/scsolver.hrc:
+	* source/ui/dialog.cxx:
+	* source/ui/resmgr.cxx: forgot to localize the text on the Help button.
+
+2008-09-08  Kohei Yoshida  <kohei.yoshida@gmail.com>
+
+	merged from ext-help.
+	
+	* ext/help/en/org.go-oo.CalcSolver/main.xhp: added help content.
+
+	* bin/make_manifest.py:
+	* ext/Makefile.in:
+	* source/ui/basedlg.cxx:
+	* source/ui/dialog.cxx: modified as merged from the 'ext-help' branch.
+
+2008-09-06  Kohei Yoshida  <kohei.yoshida@gmail.com>
+
+	* ext/Makefile.in:
+	* source/inc/baselistener.hxx:
+	* source/inc/numeric/cellfuncobj.hxx:
+	* source/inc/numeric/funcobj.hxx:
+	* source/inc/numeric/nlpbase.hxx:
+	* source/inc/numeric/testtool.hxx:
+	* source/inc/option.hxx:
+	* source/numeric/cellfuncobj.cxx:
+	* source/numeric/cycliccoordinate.cxx:
+	* source/numeric/cycliccoordinate_test.cxx:
+	* source/numeric/diff_test.cxx:
+	* source/numeric/funcobj.cxx:
+	* source/numeric/funcobj_test.cxx:
+	* source/numeric/hookejeeves.cxx:
+	* source/numeric/hookejeeves_test.cxx:
+	* source/numeric/nlpbase.cxx:
+	* source/numeric/quasinewton.cxx:
+	* source/numeric/quasinewton_test.cxx:
+	* source/numeric/rosenbrock.cxx:
+	* source/numeric/rosenbrock_test.cxx:
+	* source/ui/baselistener.cxx:
+	* source/ui/dialog.cxx:
+	* source/ui/optiondlg.cxx:
+	* source/ui/resmgr.cxx:
+	* source/ui/solvemodel.cxx: fixed a non-working non-linear programming
+	backend, which was caused by the change I made to BaseFuncObj, to make
+	the variable getter/settger methods non-virtual.  This broke the 
+	CellFuncObj class because it relied on those virtual methods to get and
+	set values to and from spreadsheet cells.  Now the non-linear backend is
+	enabled in the UI once again.
+
+2008-09-03  Kohei Yoshida  <kohei.yoshida@gmail.com>
+
+	VERSION 0.9.3
+	
+	* ext/description.xml: updated with a display name and publisher, and
+	upped the version to 0.9.3.
+
+2008-09-02  Kohei Yoshida  <kohei.yoshida@gmail.com>
+
+	* ext/configure.ac: check for xml.dom.minidom module in python 
+	installation.
+
+2008-09-01  Kohei Yoshida  <kohei.yoshida@gmail.com>
+
+	* source/inc/tool/global.hxx: don't include an OSL header for unittest
+	code.
+	
+	* source/numeric/matrix.cxx: removed compiler warnings.
+
+2008-09-01  Kohei Yoshida  <kohei.yoshida@gmail.com>
+
+	* source/inc/optiondlg.hxx:
+	* source/ui/optiondlg.cxx: 
+	* source/inc/option.hxx:
+	* source/ui/option.cxx: query for the option data when constructing the
+	option dialog for the first time, so that the state of the dialog is in
+	sync with the internal data container.
+
+2008-09-01  Kohei Yoshida  <kohei.yoshida@gmail.com>
+
+	* source/numeric/lpmodel.cxx: fixed a bug that prevented the integer
+	constraint from being enforced.
+
+2008-09-01  Kohei Yoshida  <kohei.yoshida@gmail.com>
+
+	forgot to get some changes from the solve-for-value branch because I
+	specified the source revision to be r96 when in fact the branch was
+	created at r94.
+
+2008-09-01  Kohei Yoshida  <kohei.yoshida@gmail.com>
+
+	* ext/Makefile.in:
+	* ext/translation/en-US/scsolver.properties:
+	* ext/translation/ja/scsolver.properties:
+	* source/inc/basedlg.hxx:
+	* source/inc/baselistener.hxx:
+	* source/inc/dialog.hxx:
+	* source/inc/listener.hxx:
+	* source/inc/lpbuilder.hxx:
+	* source/inc/msgdlg.hxx:
+	* source/inc/numeric/lpbase.hxx:
+	* source/inc/numeric/lpmodel.hxx:
+	* source/inc/numeric/type.hxx:
+	* source/inc/optiondlg.hxx:
+	* source/inc/scsolver.hrc:
+	* source/inc/tool/global.hxx:
+	* source/numeric/lpbase.cxx:
+	* source/numeric/lpmodel.cxx:
+	* source/numeric/lpsolve.cxx:
+	* source/ui/basedlg.cxx:
+	* source/ui/baselistener.cxx:
+	* source/ui/dialog.cxx:
+	* source/ui/listener.cxx:
+	* source/ui/lpbuilder.cxx:
+	* source/ui/msgdlg.cxx:
+	* source/ui/optiondlg.cxx:
+	* source/ui/resmgr.cxx:
+	* source/ui/solvemodel.cxx:
+	* source/ui/xcalc.cxx: merged from the solve-for-value branch, to 
+	implement another goal to allow solving for a specific value.
+
+2008-08-30  Kohei Yoshida  <kohei.yoshida@gmail.com>
+
+	* bin/pack_release.sh: generate a configure script for a release 
+	version.
+
+2008-08-28  Kohei Yoshida  <kohei.yoshida@gmail.com>
+
+	* util/makefile.mk: fixed a broken manifest.xml generation on Linux 
+	because I forgot to add $(DLLPRE) to the library name.
+
+2008-08-27  Kohei Yoshida  <kohei.yoshida@gmail.com>
+
+	* source/ui/resmgr.cxx: fixed a crasher bug due to unhandled 
+	lang::IllegalArgumentException thrown by XStringResourceManager's
+	method.
+
+2008-08-27  Kohei Yoshida  <kohei.yoshida@gmail.com>
+
+	* util/makefile.mk: some cleanup by using $(PYTHON) variable. 
+
+2008-08-27  Kohei Yoshida  <kohei.yoshida@gmail.com>
+
+	* util/makefile.mk: more tweaking.
+	
+	* util/makeManifest.py: exit with exit code 1 for failure.
+
+2008-08-27  Kohei Yoshida  <kohei.yoshida@gmail.com>
+
+	* util/makeManifest.py: added to dynamically generate manifest.xml 
+	during build.
+
+2008-08-27  Kohei Yoshida  <kohei.yoshida@gmail.com>
+
+	* util/makefile.mk: more tweaking since the .dll file was not properly
+	packed on win32.
+
+2008-08-20  Kohei Yoshida  <kohei.yoshida@gmail.com>
+
+	* source/numeric/matrix.cxx: surrounded #warning with __GNUC__.
+
+2008-08-20  Kohei Yoshida  <kohei.yoshida@gmail.com>
+
+	* util/makefile.mk: build fix for win32.
+
+2008-08-18  Kohei Yoshida  <kohei.yoshida@gmail.com>
+
+	* util/makefile.mk: added more conditional for registering the 
+	component win32 build.
+
+2008-08-15  Kohei Yoshida  <kohei.yoshida@gmail.com>
+
+	* util/makefile.mk: removed a dot from $(DLLPOST).
+
+2008-08-15  Kohei Yoshida  <kohei.yoshida@gmail.com>
+
+	* util/makefile.mk: we need to statically link lpsolve55.lib for win32
+	build.
+
+2008-08-15  Kohei Yoshida  <kohei.yoshida@gmail.com>
+
+	* prj/build.lst: added dependency on cpputools.
+	
+	* util/makefile.mk: use %(DPPPOST) instead of hard-coding .so.
+
+2008-08-15  Kohei Yoshida  <kohei.yoshida@gmail.com>
+
+	* source/numeric/matrix.cxx: added workaround for the ancient boost 
+	1.30.2 which is unfortunately still used in the official OOo build.
+
+2008-08-13  Kohei Yoshida  <kohei.yoshida@gmail.com>
+
+	* bin/convert_to_java_properties.py: a tiny script to convert the 
+	output file from extract_sdf.sh into java properties format.
+	
+	* ext/translation/cs-CZ/scsolver.properties:
+	* ext/translation/hu/scsolver.properties:
+	* ext/translation/ka/scsolver.properties:
+	* ext/translation/ko/scsolver.properties:
+	* ext/translation/sv/scsolver.properties:
+	* ext/translation/tr/scsolver.properties:
+	* ext/translation/zh-CN/scsolver.properties: mass-converted translation
+	strings from KAMI's earlier work in go-oo.
+
+2008-08-12  Kohei Yoshida  <kohei.yoshida@gmail.com>
+
+	* bin/extract_menu_trans.sh: small script to extract localized menu 
+	strings from the upstream tree.
+	
+	* bin/extract_sdf.sh:
+	* bin/get_locale.py: scripts to extract scsolver-related translations
+	from .sdf files.
+
+2008-08-12  Kohei Yoshida  <kohei.yoshida@gmail.com>
+
+	* util/makefile.mk: removed the silly SYSTEM_LPSOLVE=NO line which 
+	unsurprisingly interfered with --with-system-lpsolve build option.
+
+2008-08-12  Kohei Yoshida  <kohei.yoshida@gmail.com>
+
+	* ext/Addons.xcu: added menu translations.
+
+2008-08-11  Kohei Yoshida  <kohei.yoshida@gmail.com>
+
+	* util/makefile.mk: added linker flag for --with-system-lpsolve build 
+	option.
+
+2008-08-11  Kohei Yoshida  <kohei.yoshida@gmail.com>
+
+	* bin/pack_release.sh: added to automate the checkout, cleanup, and the 
+	packing process for go-oo integration.
+
+2008-08-11  Kohei Yoshida  <kohei.yoshida@gmail.com>
+
+	* util/makefile.mk: sleep 2 seconds before executing regcomp, to prevent
+	build failure on parallel builds.
+
+	* ext/Windows/scsolver.uno.dll.gz: it wasn't probably a good idea to 
+	check in a binary.
+
+2008-08-10  Kohei Yoshida  <kohei.yoshida@gmail.com>
+
+	* ext/META-INF/manifest.xml: use the native entry for internal build.
+	TODO: This temporarily breaks the extension build.  Fix it.
+	
+	* prj/d.lst: deliver scsolver.uno.oxt.
+	
+	* util/makefile.mk: statically link liblpsolver55.a since the component
+	registration process can't locate liblpsolve55.so dynamically.  Is there
+	any way to fix the regcomp process ???
+
+2008-08-10  Kohei Yoshida  <kohei.yoshida@gmail.com>
+
+	* util/makefile.mk: enabled building of scsolver extension as part of
+	the internal build.
+
+2008-08-10  Kohei Yoshida  <kohei.yoshida@gmail.com>
+
+	* source/inc/tool/global.hxx:
+	* source/tool/global.cxx:	
+	* source/numeric/quadfitlinesearch.cxx: abstracted isfinite function 
+	to get it to work for different build environments.
+	
+	* source/numeric/makefile.mk: updated file list.
+	
+	* util/makefile.pmk: introduced SCSOLVER_OOO_BUILD compiler define for
+	building scsolver as an OOo internal module.
+
+2008-07-28  Kohei Yoshida  <kohei.yoshida@gmail.com>
+
+	* ext/description.xml: up'ed the version number to 0.9.2.
+	
+	* source/numeric/matrix.cxx: fixed potential recursion overflow.
+	
+	* source/numeric/nlpmodel.cxx:
+	* source/numeric/quadfitlinesearch.cxx: fix for msvc++ compiler.
+	
+	* source/ui/optiondlg.cxx: disabled the linear/non-linear switch for now
+	since the non-linear optimizer doesn't seem to be working at the moment.
+
+2008-07-28  Kohei Yoshida  <kohei.yoshida@gmail.com>
+
+	* source/inc/numeric/penalty.hxx:
+	* source/numeric/penalty.cxx:
+	* source/numeric/penalty_test.cxx: initial penalty method skeleton 
+	added.
+	
+	* workben/unittest/Makefile: compile the above new files for unit-
+	testing.
+	
+	* source/inc/numeric/cellfuncobj.hxx:
+	* source/inc/numeric/funcobj.hxx:
+	* source/numeric/cellfuncobj.cxx:
+	* source/numeric/cycliccoordinate_test.cxx:
+	* source/numeric/diff_test.cxx:
+	* source/numeric/funcobj.cxx:
+	* source/numeric/funcobj_test.cxx:
+	* source/numeric/hookejeeves_test.cxx:
+	* source/numeric/quasinewton_test.cxx:
+	* source/numeric/rosenbrock.cxx:
+	* source/numeric/rosenbrock_test.cxx:
+	* workben/optimizer/nlp_skel/myfunctor.cxx:
+	* workben/optimizer/nlp_skel/myfunctor.hxx: changed the signatures of 
+	several methods in BaseFuncObj, and adjusted all its derived classes.
+
+2008-07-27  Kohei Yoshida  <kohei.yoshida@gmail.com>
+
+	* source/inc/numeric/nlpmodel.hxx:
+	* source/numeric/nlpmodel.cxx: non-linear model instance can now store
+	constraints.
+
+2008-07-27  Kohei Yoshida  <kohei.yoshida@gmail.com>
+
+	* source/inc/dialog.hxx:
+	* source/inc/numeric/type.hxx:
+	* source/numeric/lpmodel.cxx:
+	* source/numeric/lpsimplex.cxx:
+	* source/numeric/lpsolve.cxx:
+	* source/numeric/lpuno.cxx:
+	* source/ui/dialog.cxx:
+	* source/ui/lpbuilder.cxx: GREATER_THAN_EQUAL -> GREATER_EQUAL, 
+	LESS_THAN_EQUAL -> LESS_EQUAL, fixed a build breakge due to the last 
+	check-in.
+
+2008-07-27  Kohei Yoshida  <kohei.yoshida@gmail.com>
+
+	* source/numeric/matrix.cxx: removed the noalias warning on boost.
+
+2008-07-20  Kohei Yoshida  <kohei.yoshida@gmail.com>
+
+	* ext/Addons.xcu:
+	* ext/META-INF/manifest.xml:
+	* ext/ProtocolHandler.xcu:
+	* source/inc/solver.hxx:
+	* source/service/service.cxx: changed the implementation name from
+	scsolver.SolverImpl to org.go-oo.comp.CalcSolver to avoid conflict with
+	the built-in version (so that the component development can be done 
+	using the go-oo version of OOo which already has the built-in version).
+
+	* README: updated the README.
+
+2008-07-20  Kohei Yoshida  <kohei.yoshida@gmail.com>
+
+	* ext/configure.ac: additional check for lp_solve's archive file.
+	* ext/Makefile.in: new object files for additional non-linear 
+	algorithms that I have written.
+	
+2008-07-20  Kohei Yoshida  <kohei.yoshida@gmail.com>
+
+	* ext/configure.ac: removed redundant 'checking' word.
+
+2008-06-22  Kohei Yoshida  <kohei.yoshida@gmail.com>
+
+	* source/inc/numeric/baselinesearch.hxx:
+	* source/numeric/baselinesearch.cxx: use the Goal enum in global to 
+	specify optimization goal intead.
+
+	* source/inc/numeric/funcobj.hxx:
+	* source/numeric/funcobj.cxx: SingleVarFuncObj no longer needs to keep 
+	a pointer to BaseFuncObj.
+
+	* source/inc/numeric/quadfitlinesearch.hxx:
+	* source/numeric/quadfitlinesearch.cxx:
+	* source/numeric/quadfitlinesearch_test.cxx: added support for 
+	maximization and test case for it.
+
+	* source/inc/numeric/testtool.hxx: added support for running 
+	maximization test.
+
+
+
+	* source/numeric/cycliccoordinate.cxx:
+	* source/numeric/hookejeeves.cxx:
+	
+	* source/numeric/quasinewton.cxx: use the quad fit line search algorithm
+	to perform line seach instead of using its own line search algorithm.  
+	The latter was not very robust.
+
+	* source/inc/tool/global.hxx:	
+	* source/numeric/rosenbrock.cxx: 
+	* source/tool/global.cxx: moved vectorToMatrix to global.?xx to allow it
+	to be used in other files.  Also added matrixToVector function.
+
+	* workben/unittest/Makefile: added dependency on quadfitlinesearch.o 
+	etc. to quasinewton executable.
+
+2008-06-19  Kohei Yoshida  <kohei.yoshida@gmail.com>
+
+	* source/numeric/rosenbrock.cxx: fixed the norm calculation of a vector.
+
+2008-06-19  Kohei Yoshida  <kohei.yoshida@gmail.com>
+
+	* source/inc/numeric/quadfitlinesearch.hxx:
+	* source/numeric/quadfitlinesearch.cxx: made the max iteration value 
+	configurable, used Exception instead of ::std::exception for better
+	error messaging.
+
+2008-06-18  Kohei Yoshida  <kohei.yoshida@gmail.com>
+
+	* source/inc/numeric/exception.hxx:
+	* source/numeric/exception.cxx: added constructor in Exception class 
+	that takes ::std::string.
+	
+	* source/inc/numeric/rosenbrock.hxx:
+	* source/numeric/rosenbrock.cxx: completed Rosenbrock algorithm 
+	implementation.
+	
+	* source/inc/numeric/testtool.hxx: minor change in comments.
+
+	* source/numeric/funcobj.cxx: when converting to a single variable 
+	function object by ratio, sometimes the ratio of the first variable is 
+	zero, in which case I should use the first variable whose corresponding
+	ratio is not zero.
+	
+	* source/numeric/quadfitlinesearch.cxx: made the exception message for
+	out-of-range quadratic peak condition more descriptive.
+
+	* workben/unittest/Makefile: some build fixes.
+
+2008-06-18  Kohei Yoshida  <kohei.yoshida@gmail.com>
+
+	* source/inc/numeric/matrix.hxx:
+	* source/numeric/matrix.cxx: added paramter names in the header file, 
+	added scalar * matrix operator overload, removed the disabled code.
+
+2008-06-18  Kohei Yoshida  <kohei.yoshida@gmail.com>
+
+	* source/inc/numeric/testtool.hxx: function parameter name changes.
+
+2008-06-18  Kohei Yoshida  <kohei.yoshida@gmail.com>
+
+	* source/inc/numeric/hookejeeves.hxx:
+	* source/numeric/hookejeeves.cxx: use the base class' debug flag instead
+	of having its own debug flag, fixed a bug in pattern search vector 
+	calculation.
+	
+	* source/inc/numeric/nlpbase.hxx:
+	* source/numeric/nlpbase.cxx: added debug flag and its associated 
+	accessor methods.
+	
+	* source/inc/numeric/rosenbrock.hxx:
+	* source/numeric/rosenbrock.cxx: removed debugPrint() method.
+	
+	* source/inc/numeric/testtool.hxx: turn on debug for NLP algorithm 
+	testing.
+
+2008-06-18  Kohei Yoshida  <kohei.yoshida@gmail.com>
+
+	* source/inc/numeric/rosenbrock.hxx:
+	* source/numeric/rosenbrock.cxx:
+	* source/numeric/rosenbrock_test.cxx: added skeleton files for 
+	Rosenbrock algorithm implementation and its test code.  It's not 
+	completed yet.
+
+	* source/numeric/hookejeeves_test.cxx:	
+	* source/inc/numeric/testtool.hxx: moved some functions from HookeJeeves
+	test code.
+	
+	* workben/unittest/Makefile: new 'rosenbrock' executable for testing
+	Rosenbrock algorithm.
+
+2008-06-17  Kohei Yoshida  <kohei.yoshida@gmail.com>
+
+	* source/inc/numeric/diff.hxx:
+	* source/numeric/bisectionsearch.cxx:
+	* source/numeric/diff.cxx:
+	* source/numeric/diff_test.cxx:
+	* source/numeric/quadfitlinesearch.cxx:
+	* source/numeric/quasinewton.cxx: removed old NumericalDiffer code and
+	renamed NumericalDiffer2 to NumericalDiffer.
+
+2008-06-17  Kohei Yoshida  <kohei.yoshida@gmail.com>
+
+	* source/inc/numeric/baselinesearch.hxx:
+	* source/numeric/baselinesearch.cxx: modified to allow use of the
+	default constructor.
+	
+	* source/inc/numeric/bisectionsearch.hxx:
+	* source/numeric/bisectionsearch.cxx: 
+	* source/numeric/bisectionsearch_test.cxx: implemented bisection search
+	algorithm and its test code.
+	
+	* source/inc/numeric/testtool.hxx (runSingleVarTestFunc): modified to
+	accept a pointer to the line search class.
+	
+	* source/inc/numeric/quadfitlinesearch.hxx:
+	* source/numeric/quadfitlinesearch.cxx: adjusted for the base class 
+	change.
+	
+	* source/numeric/quadfitlinesearch_test.cxx: adjusted for the change 
+	with runSingleVarTestFunc function.
+	
+	* workben/unittest/Makefile: bisection search needs diff.o and 
+	exception.o.
+
+2008-06-16  Kohei Yoshida  <kohei.yoshida@gmail.com>
+
+	* source/inc/numeric/testtool.hxx: moved common unit test code into 
+	this header.
+
+	* source/numeric/quadfitlinesearch_test.cxx:	
+	* source/numeric/bisectionsearch_test.cxx: use the testtool.hxx header
+	instead of duplicating some common test code.
+
+	* workben/unittest/Makefile: build fix.
+
+2008-06-16  Kohei Yoshida  <kohei.yoshida@gmail.com>
+
+	* source/inc/numeric/baselinesearch.hxx:
+	* source/numeric/baselinesearch.cxx: added BaseLineSearch class; the 
+	comon base class for all line search algorithms.
+	
+	* source/inc/numeric/bisectionsearch.hxx:
+	* source/numeric/bisectionsearch.cxx:
+	* source/numeric/bisectionsearch_test.cxx: added skeleton files for the
+	upcoming bisection line search implementation.
+	
+	* source/inc/numeric/quadfitlinesearch.hxx:
+	* source/numeric/cycliccoordinate.cxx:
+	* source/numeric/quadfitlinesearch.cxx:
+	* source/numeric/quadfitlinesearch_test.cxx: had QuadFitLineSearch class
+	derive from BaseLineSearch, and made all necessary changes.
+	
+	* workben/unittest/Makefile: added files used for BaseLineSearch and
+	BisectionSearch classes.
+
+2008-06-15  Kohei Yoshida  <kohei.yoshida@gmail.com>
+
+	* source/inc/numeric/diff.hxx:
+	* source/numeric/diff.cxx: removed NumericalDiffer class entirely.
+	
+	* source/numeric/quasinewton.cxx: re-wrote to use NumericalDiffer2 
+	instead of NumericalDiffer for numerical differentiation inside the
+	quasi-Newton implementation.
+
+2008-06-14  Kohei Yoshida  <kohei.yoshida@gmail.com>
+
+	* source/numeric/quasinewton_test.cxx: unit test for quasi-Newton.
+
+	* workben/unittest/Makefile: enabled quasinewton executable.
+
+2008-06-14  Kohei Yoshida  <kohei.yoshida@gmail.com>
+
+	* source/inc/numeric/quasinewton.hxx: renamed from nlpnewton.hxx.
+	
+	* source/numeric/quasinewton.cxx: renamed from nlpqnewton.cxx.
+
+	* source/ui/solvemodel.cxx: nlpnewton.hxx -> quasinewton.hxx.
+	
+	* workben/unittest/Makefile: added skeleton for unit-testing quasi-
+	Newton implementation.  Not done yet.
+
+2008-06-14  Kohei Yoshida  <kohei.yoshida@gmail.com>
+
+	* source/numeric/hookejeeves.cxx:	
+	* source/numeric/funcobj.cxx:
+	* source/numeric/funcobj_test.cxx: changed the implementation of 
+	BaseFuncRatioObjImpl so that the ratio of the first variable can also 
+	be specified (intead of always assuming that to be 1.0).  Changed the
+	test code and the Hooke Jeeves code accordingly.
+	
+	* source/numeric/quadfitlinesearch.cxx: fixed a bug in the initial 
+	3-point search algorithm.
+	
+	* source/numeric/quadfitlinesearch_test.cxx: added new test cases.
+
+2008-06-13  Kohei Yoshida  <kohei.yoshida@gmail.com>
+
+	* source/inc/numeric/hookejeeves.hxx:
+	* source/numeric/hookejeeves.cxx:
+	* source/numeric/hookejeeves_test.cxx: added Hooke & Jeeves method.
+	* workben/unittest/Makefile: 
+	
+	* source/inc/numeric/exception.hxx: added a generic Exception class.
+	* source/numeric/exception.cxx:
+	
+	* source/numeric/cycliccoordinate.cxx:
+	* source/numeric/cycliccoordinate_test.cxx: minor editing.
+
+	* source/numeric/quadfitlinesearch.cxx: removed Exception class now that
+	we have the global Exception class.
+
+2008-06-13  Kohei Yoshida  <kohei.yoshida@gmail.com>
+
+	* source/numeric/funcobj_test.cxx: added another test case with 6 
+	variables.
+
+2008-06-13  Kohei Yoshida  <kohei.yoshida@gmail.com>
+
+	* source/numeric/funcobj_test.cxx: added a unit test file for the 
+	function object implementation code.
+
+	* source/inc/numeric/funcobj.hxx,
+	* source/numeric/funcobj.cxx: added a new wrapper class for BaseFuncObj
+	to convert a multi-variable function into a single-variable function by
+	locking the ratio of secondary variables relative to the first one.
+	
+	* workben/unittest/Makefile: added a binary executable 'funcobj' for
+	unit test of the function object implementation code.
+
+2008-06-10  Kohei Yoshida  <kohei.yoshida@gmail.com>
+
+	* source/inc/numeric/funcobj.hxx:
+	* source/numeric/funcobj.cxx: removed toBaseFuncObj() since I don't 
+	need it any more.
+	
+	* source/inc/numeric/cycliccoordinate.hxx:	
+	* source/numeric/cycliccoordinate.cxx:
+	* source/numeric/cycliccoordinate_test.cxx: completed the cyclic 
+	coordinate algorithm.
+
+	* source/inc/numeric/diff.hxx:	
+	* source/numeric/diff.cxx:
+	* source/numeric/diff_test.cxx: changed the implementation to use 
+	SingleVarFuncObj instead of BaseFuncObj.
+	
+	* source/numeric/quadfitlinesearch.cxx:
+	* source/numeric/quadfitlinesearch_test.cxx: move P2 when the distance
+	between P2 and P1 or P3 is less than half of epsilon.  This improves 
+	the odds of convergence.
+	
+	* workben/unittest/Makefile: got cycliccoordinate executable to compile.
+
+2008-05-19  Kohei Yoshida  <kohei.yoshida@gmail.com>
+	
+	* workben/unittest/Makefile:
+	* source/inc/numeric/cycliccoordinate.hxx:
+	* source/numeric/cycliccoordinate.cxx:
+	* source/numeric/cycliccoordinate_test.cxx: added skeleton code for 
+	future cyclic coordinate method implementation and its unit test.
+
+	* source/inc/numeric/lpbase.hxx:
+	* source/inc/numeric/nlpbase.hxx:
+	* source/numeric/lpbase.cxx:
+	* source/numeric/nlpbase.cxx: remove throw() signature from 
+	destructors.
+	
+	* source/inc/numeric/quadfitlinesearch.hxx: copyright year update to 
+	include this year.
+
+2008-05-11  Kohei Yoshida  <kohei.yoshida@gmail.com>
+
+	* source/inc/numeric/polyeqnsolver.hxx(size): added javadoc comment.
+	
+	* source/inc/numeric/quadfitlinesearch.hxx:
+	* source/numeric/quadfitlinesearch.cxx: added mbDebug member to toggle
+	debug statements.
+	
+	* source/numeric/diff.cxx: removed printf statement.
+	
+	* source/numeric/funcobj.cxx: updated the copyright years.
+
+	* source/numeric/quadfitlinesearch_test.cxx: added another test case 
+	for the quadratic fit line search.
+
+2008-05-11  Kohei Yoshida  <kohei.yoshida@gmail.com>
+
+	* source/numeric/quadfitlinesearch.cxx: minor edit.
+	
+	* source/numeric/quadfitlinesearch_test.cxx: added another test 
+	function.
+
+2008-05-11  Kohei Yoshida  <kohei.yoshida@gmail.com>
+
+	* source/inc/numeric/polyeqnsolver.hxx:
+	* source/numeric/polyeqnsolver.cxx: minor edits in comments.
+	
+	* source/inc/numeric/quadfitlinesearch.hxx:
+	* source/numeric/quadfitlinesearch.cxx: commented out a bunch of printf
+	statements & made the solve() method return the peak x value.
+	
+	* source/numeric/quadfitlinesearch_test.cxx (TestFunc2): added.
+
+2008-05-11  Kohei Yoshida  <kohei.yoshida@gmail.com>
+
+	* source/numeric/quadfitlinesearch.cxx: completed a draft version of
+	quad-fit line search.  It can now solve the test function.
+	
+	* source/numeric/quadfitlinesearch_test.cxx (TestFuncBase): added to 
+	tidy up the code a little.
+
+2008-05-11  Kohei Yoshida  <kohei.yoshida@gmail.com>
+
+	* source/inc/numeric/quadfitlinesearch.hxx:
+	* source/numeric/quadfitlinesearch.cxx: iterate until finding a point
+	of covergence.
+
+2008-05-10  Kohei Yoshida  <kohei.yoshida@gmail.com>
+
+	* source/numeric/quadfitlinesearch.cxx: more work on initial point 
+	search.
+
+2008-05-10  Kohei Yoshida  <kohei.yoshida@gmail.com>
+
+	* source/numeric/quadfitlinesearch.cxx: more work on step length 
+	calculation.
+
+2008-05-01  Mario Alfredo Renderos  <alfredo.renderos@grupocassa.com>
+
+	* ext/translation/es/scsolver.properties: added Spanish translation.
+
+2008-04-28  Kohei Yoshida  <kohei.yoshida@gmail.com>
+
+	* source/numeric/quadfitlinesearch.cxx: worked on inexact line search 
+	per Armijo's rule.
+	
+	* source/numeric/quadfitlinesearch_test.cxx: added a line comment.
+
+2008-04-27  Kohei Yoshida  <kohei.yoshida@gmail.com>
+
+	* source/inc/numeric/quadfitlinesearch.hxx: added header comment with
+	citation.
+
+2008-04-27  Kohei Yoshida  <kohei.yoshida@gmail.com>
+
+	* source/numeric/diff_test.cxx:
+	* source/numeric/quadfitlinesearch.cxx: fixed build breakage.
+
+2008-04-27  Kohei Yoshida  <kohei.yoshida@gmail.com>
+
+	initial commit; transferred from ooo-build.

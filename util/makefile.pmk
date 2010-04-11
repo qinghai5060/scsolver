@@ -1,0 +1,2 @@
+# Placeholder makefile for global flags
+CDEFS += -DSCSOLVER_OOO_BUILD

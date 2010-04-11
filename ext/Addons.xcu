@@ -1,0 +1,71 @@
+﻿<?xml version='1.0' encoding='UTF-8'?>
+<oor:component-data xmlns:oor="http://openoffice.org/2001/registry" xmlns:xs="http://www.w3.org/2001/XMLSchema" oor:name="Addons" oor:package="org.openoffice.Office">
+    <node oor:name="AddonUI">
+        <node oor:name="OfficeMenuBarMerging">
+            <node oor:name="org.go-oo.comp.CalcSolver.OfficeMenuBar" oor:op="replace">
+                <node oor:name="S1" oor:op="replace">
+                    <prop oor:name="MergePoint">
+                        <value>.uno:ToolsMenu\.uno:GoalSeekDialog</value>
+                    </prop>
+                    <prop oor:name="MergeCommand">
+                        <value>AddAfter</value>
+                    </prop>
+                    <prop oor:name="MergeFallback">
+                        <value>AddPath</value>
+                    </prop>
+                    <prop oor:name="MergeContext" oor:type="xs:string">
+                        <value>com.sun.star.sheet.SpreadsheetDocument</value>
+                    </prop>
+                    <node oor:name="MenuItems">
+                        <node oor:name="org.go-oo.comp.CalcSolver" oor:op="replace">
+                            <prop oor:name="Title" oor:type="xs:string">
+                                <value>Solver...</value>
+                                <value xml:lang="en-US">Solver...</value>
+                                <value xml:lang="fr">Solveur...</value>
+                                <value xml:lang="ja">ソルバー...</value>
+                                <value xml:lang="ru">Поиск решения...</value>
+                                <value xml:lang="hu">Megoldó...</value>
+				<value xml:lang="bg">Solver...</value>
+				<value xml:lang="ca">Solucionador...</value>
+				<value xml:lang="cs">Řešitel...</value>
+				<value xml:lang="da">Problemløser...</value>
+				<value xml:lang="de">Solver...</value>
+				<value xml:lang="el">Επίλυση...</value>
+				<value xml:lang="es">Solver...</value>
+				<value xml:lang="et">Lahendaja...</value>
+				<value xml:lang="fr">Solveur...</value>
+				<value xml:lang="gl">Resolvedor...</value>
+				<value xml:lang="it">Risolutore...</value>
+				<value xml:lang="ja">ソルバー...</value>
+				<value xml:lang="km">កញ្ចប់​ដោះស្រាយ...</value>
+				<value xml:lang="ko">솔버...</value>
+				<value xml:lang="lt">Sprendiklis...</value>
+				<value xml:lang="mk">Решавач...</value>
+				<value xml:lang="mn">Solver...</value>
+				<value xml:lang="nl">Oplosser...</value>
+				<value xml:lang="pl">Solver...</value>
+				<value xml:lang="pt">Sistema de resolução...</value>
+				<value xml:lang="pt-BR">Solver...</value>
+				<value xml:lang="sh">Razrešilac...</value>
+				<value xml:lang="sl">Reševalec...</value>
+				<value xml:lang="sr">Разрешилац...</value>
+				<value xml:lang="sv">Problemlösaren...</value>
+				<value xml:lang="tr">Çözümleyici...</value>
+				<value xml:lang="uk">Пошук рішення...</value>
+				<value xml:lang="vi">Giải phương trình...</value>
+				<value xml:lang="zh-CN">求解器...</value>
+				<value xml:lang="zh-TW">解決程式...</value>
+                            </prop>
+                            <prop oor:name="URL" oor:type="xs:string">
+                                <value>org.go-oo.comp.CalcSolver:execute</value>
+                            </prop>
+                            <prop oor:name="Target" oor:type="xs:string">
+                                <value>_self</value>
+                            </prop>
+                        </node>
+                    </node>
+                </node>
+            </node>
+        </node>
+    </node>
+</oor:component-data>
